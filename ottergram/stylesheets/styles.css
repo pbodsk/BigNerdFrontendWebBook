@@ -1,50 +1,77 @@
-@font-face {
-  font-family: 'lakeshore';
-  src: url('fonts/LAKESHOR-webfont.eot');
-  src: url('fonts/LAKESHOR-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/LAKESHOR-webfont.woff') format('woff'), url('fonts/LAKESHOR-webfont.ttf') format('truetype'), url('fonts/LAKESHOR-webfont.svg#lakeshore') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+/**
+ * 1. Avoid the IE 10-11 `min-height` bug.
+ * 2. Set `flex-shrink` to `0` to prevent some browsers from
+ *    letting these items shrink to smaller than their content's default
+ *    minimum size. See http://bit.ly/1Mn35US for details.
+ * 3. Use `%` instead of `vh` since `vh` is buggy in older mobile Safari.
+ */
+ @font-face {
+   font-family: 'lakeshore';
+   src: url('fonts/LAKESHOR-webfont.eot');
+   src: url('fonts/LAKESHOR-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/LAKESHOR-webfont.woff') format('woff'), url('fonts/LAKESHOR-webfont.ttf') format('truetype'), url('fonts/LAKESHOR-webfont.svg#lakeshore') format('svg');
+   font-weight: normal;
+   font-style: normal;
+ }
 
-@font-face {
-  font-family: 'airstreamregular';
-  src: url('fonts/Airstream-webfont.eot');
-  src: url('fonts/Airstream-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Airstream-webfont.woff') format('woff'), url('fonts/Airstream-webfont.ttf') format('truetype'), url('fonts/Airstream-webfont.svg#lakeshore') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+ @font-face {
+   font-family: 'airstreamregular';
+   src: url('fonts/Airstream-webfont.eot');
+   src: url('fonts/Airstream-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Airstream-webfont.woff') format('woff'), url('fonts/Airstream-webfont.ttf') format('truetype'), url('fonts/Airstream-webfont.svg#lakeshore') format('svg');
+   font-weight: normal;
+   font-style: normal;
+ }
 
-html, body {
-  height: 100%;
-}
+ a {
+   text-decoration: none;
+ }
 
-body {
+
+ .main-header {
+   flex: 0 1 auto;
+ }
+
+ .logo-text {
+   background: white;
+   text-align: center;
+   text-transform: uppercase;
+   font-family: lakeshore;
+   font-size: 37px;
+ }
+
+.HolyGrail {
   display: flex;
+  height: 100%; /* 1, 3 */
   flex-direction: column;
   font-size: 10px;
   background: rgb(149, 194, 215);
 }
 
-a {
-  text-decoration: none;
+.HolyGrail-header,
+.HolyGrail-footer {
+  flex: none; /* 2 */
 }
 
-.main-header {
-  flex: 0 1 auto;
-}
-
-.logo-text {
-  background: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: lakeshore;
-  font-size: 37px;
-}
-
-.main-content {
-  flex: 1 1 auto;
+.HolyGrail-body {
   display: flex;
-  flex-direction: column;
+  flex: 1 0 auto; /* 2 */
+  flex-direction: row;
+}
+
+.HolyGrail-content {
+  margin-top: 10px;
+  flex: 1 1 auto;
+}
+
+.HolyGrail-nav {
+  order: -1;
+}
+
+.HolyGrail-nav,
+.HolyGrail-ads {
+  padding: 1em;
+  border-radius: 3px;
+
+  background: rgba(147, 128, 108, 0.1);
 }
 
 .thumbnail-item {
@@ -58,12 +85,12 @@ a {
 .thumbnail-list {
   flex: 0 1 auto;
   order: 2;
-  display: flex;
-  justify-content: space-between;
   list-style: none;
   padding: 0;
   white-space: nowrap;
   overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .thumbnail-image {
@@ -106,23 +133,19 @@ a {
   font-size: 40px;
 }
 
-@media all and (orientation: landscape) {
-  .main-content {
+
+/*
+@media (--break-lg) {
+  .HolyGrail-body {
     flex-direction: row;
-    overflow: hidden;
   }
-
-  .thumbnail-list {
-    flex-direction: column;
-    order: 0;
-    margin-left: 20px;
+  .HolyGrail-content {
+    flex: 1;
+    padding: 0 var(--space-lg);
+    margin: 0;
   }
-
-  .thumbnail-item {
-    max-width: 260px;
-  }
-
-  .thumbnail-item + .thumbnail-item {
-    margin-top: 20px;
+  .HolyGrail-nav, .HolyGrail-ads {
+    flex: 0 0 12em;
   }
 }
+*/
