@@ -73,7 +73,7 @@ function showDetails() {
   }, 50);
 }
 
-
+/*
 function initializeEvents() {
   'use strict';
   var thumbnails = getThumbnailsArray();
@@ -83,3 +83,11 @@ function initializeEvents() {
 
 //go
 initializeEvents();
+*/
+//rewritten as module
+(function(){
+  'use strict';
+  var thumbnails = getThumbnailsArray();
+  thumbnails.forEach(addThumbClickHandler);
+  addKeyPressHandler();  
+})();
