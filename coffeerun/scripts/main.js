@@ -1,6 +1,8 @@
 (function(window){
   'use strict';
   var FORM_SELECTOR = '[data-coffee-order="form"]';
+  var INPUT_ID = '#strengthLevel';
+  var OUTPUT_ID = '#strengthOutput';
   var App = window.App;
   var Truck = App.Truck;
   var DataStore = App.DataStore;
@@ -10,5 +12,5 @@
   window.myTruck = myTruck;
   var formHandler = new FormHandler(FORM_SELECTOR);
   formHandler.addSubmitHandler(myTruck.createOrder.bind(myTruck));
-
+  formHandler.addStrengthEffect(INPUT_ID, OUTPUT_ID);
 })(window);

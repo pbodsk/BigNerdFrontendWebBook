@@ -28,6 +28,25 @@
     });
   };
 
+  FormHandler.prototype.addStrengthEffect = function (inputSelector, outputSelector) {
+    var inputElement = $(inputSelector);
+    var outputElement = $(outputSelector);
+
+    inputElement.on('input', function(){
+      var currentValue = inputElement.val();
+      outputElement.val(inputElement.val());
+      if(currentValue < 30) {
+        outputElement.css('color', 'green');
+      }
+      if(currentValue < 65 && currentValue > 30) {
+        outputElement.css('color', 'yellow');
+      }
+      if(currentValue > 65) {
+        outputElement.css('color', 'red');
+      }
+    });
+  };
+
   App.FormHandler = FormHandler;
   window.App = App;
 })(window);
