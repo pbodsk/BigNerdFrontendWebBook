@@ -11,6 +11,7 @@
   "author": "Peter Bødskov",
   "license": "ISC",
   "devDependencies": {
+    "mime": "^2.2.0",
     "nodemon": "^1.15.0"
   }
 }
