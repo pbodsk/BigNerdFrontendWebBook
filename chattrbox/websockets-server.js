@@ -7,24 +7,40 @@ var ws = new WebSocketServer({
 });
 
 var messages = [];
+var authorizedClients = [];
 
 console.log('websockets server started');
 
 ws.on('connection', function(socket){
   console.log('client connection established');
-  if(messages.length > 0){
-    socket.send('welcome to the chat, here\'s what has happened so far');
-  }
+  // if(messages.length > 0){
+  //   socket.send('welcome to the chat, here\'s what has happened so far');
+  // }
 
-  messages.forEach(function(msg){
-    socket.send(msg);
-  });
+  // messages.forEach(function(msg){
+  //   socket.send(msg);
+  // });
 
   socket.on('message', function(data){
     console.log('message received: ' + data);
-    messages.push(data);
-    ws.clients.forEach(function(clientSocket){
-      clientSocket.send(data);
-    });
+    if (data == "Swordfish") {
+      authorizedClients.push(socket);
+      socket.send('welcome to the chat, here\'s what has happened so far');
+      messages.forEach(function(msg){
+        socket.send(msg);
+      });
+    }
+
+    if(authorizedClients.indexOf(socket) > -1) {
+      messages.push(data);
+
+      authorizedClients.forEach(function(clientSocket){
+        clientSocket.send(data);
+      });
+
+    }
+    // ws.clients.forEach(function(clientSocket){
+    //   clientSocket.send(data);
+    // });
   });
 });
