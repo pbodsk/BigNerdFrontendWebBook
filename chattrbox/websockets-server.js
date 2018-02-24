@@ -1,4 +1,5 @@
 var WebSocket = require('ws');
+var chatbotGreeting = require('./chatbot');
 
 var WebSocketServer = WebSocket.Server;
 var port = 3001;
@@ -20,8 +21,9 @@ ws.on('connection', function(socket){
     socket.send(msg);
   });
 
+  chatbotGreeting();
+
   socket.on('message', function(data){
-    console.log('message received: ' + data);
     messages.push(data);
     ws.clients.forEach(function(clientSocket){
       clientSocket.send(data);
