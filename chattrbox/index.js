@@ -3,6 +3,7 @@ var fs = require('fs');
 var extract = require('./extract');
 var errorPage = require('./errorPage');
 var mime = require('mime');
+var wss = require('./websockets-server');
 
 var handleError = function(err, res) {
   res.writeHead(404);
