@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var extract = require('./extract');
+var errorPage = require('./errorPage');
 var mime = require('mime');
 
 var handleError = function(err, res) {
@@ -9,11 +10,7 @@ var handleError = function(err, res) {
 };
 
 var showErrorPage = function(err, res) {
-  fs.readFile('app/error.html', function(err, data){
-    res.setHeader('Content-Type',
-  'text/html');
-    res.end(data);
-  });
+  errorPage(err, res, 'app', 'error.html')
 };
 
 var server = http.createServer(function(req, res){
