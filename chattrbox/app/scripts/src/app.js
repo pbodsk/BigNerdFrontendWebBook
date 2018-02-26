@@ -10,6 +10,14 @@ class ChatApp {
       socket.sendMessage(message.serialize());
     });
 
+    socket.registerCloseHandler(() => {
+      console.log('connection closed, attempting reconnect in 10 seconds');
+
+      window.setTimeout(function() {
+        socket.init('ws://localhost:3001');
+      }, 10000);
+    });
+
     socket.registerMessageHandler((data) => {
       console.log(data);
     });
