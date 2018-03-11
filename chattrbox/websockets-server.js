@@ -21,7 +21,7 @@ ws.on('connection', function(socket){
     socket.send(msg);
   });
 
-  chatbotGreeting();
+  // chatbotGreeting();
 
   socket.on('message', function(data){
     messages.push(data);
